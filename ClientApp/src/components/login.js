@@ -20,7 +20,7 @@ export class login extends Component {
         await this.setState({
             [name]: value
         });
-        console.log("input:\n", this.state);
+        //console.log("input:\n", this.state);
     }
 
     login(event) {

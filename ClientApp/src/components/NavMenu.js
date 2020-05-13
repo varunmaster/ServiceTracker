@@ -21,6 +21,10 @@ export class NavMenu extends Component {
         });
     }
 
+    handleSignOut() {
+        localStorage.removeItem('isLoggedIn');
+    }
+
     render() {
         return (
             <header>
@@ -33,17 +37,30 @@ export class NavMenu extends Component {
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                                 </NavItem>
+                                &nbsp;
+                                &nbsp;
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
                                 </NavItem>
+                                &nbsp;
+                                &nbsp;
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                                 </NavItem>
+                                &nbsp;
+                                &nbsp;
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/services">Services</NavLink>
                                 </NavItem>
+                                &nbsp;
+                                &nbsp;
                                 <NavItem>
                                     <Button color="info" size="sm"><NavLink tag={Link} className="text-dark" to="/login">Login</NavLink></Button>
+                                </NavItem>
+                                &nbsp;
+                                &nbsp;
+                                <NavItem>
+                                    <Button color="danger" size="sm" onClick={this.handleSignOut}><NavLink tag={Link} className="text-dark">Sign Out</NavLink></Button>
                                 </NavItem>
                             </ul>
                         </Collapse>
