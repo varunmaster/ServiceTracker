@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export class Counter extends Component {
     static displayName = Counter.name;
@@ -16,16 +17,19 @@ export class Counter extends Component {
     }
 
     render() {
+        let boolLoggedIn = parseInt(localStorage.getItem('isLoggedIn'));
         return (
-            <div>
-                <h1>Counter</h1>
+            boolLoggedIn === 1 ?
+                <div>
+                    <h1>Counter</h1>
 
-                <p>This is a simple example of a React component.</p>
+                    <p>This is a simple example of a React component.</p>
 
-                <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
+                    <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
 
-                <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
-            </div>
+                    <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
+                </div>
+                : <Redirect to='/' />
         );
     }
 }

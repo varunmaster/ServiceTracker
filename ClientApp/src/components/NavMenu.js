@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
@@ -41,6 +41,9 @@ export class NavMenu extends Component {
                                 </NavItem>
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/services">Services</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <Button color="info" size="sm"><NavLink tag={Link} className="text-dark" to="/login">Login</NavLink></Button>
                                 </NavItem>
                             </ul>
                         </Collapse>

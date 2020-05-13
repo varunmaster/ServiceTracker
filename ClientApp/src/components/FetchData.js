@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export class FetchData extends Component {
     static displayName = FetchData.name;
@@ -41,13 +42,16 @@ export class FetchData extends Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : FetchData.renderForecastsTable(this.state.forecasts);
+        let boolLoggedIn = parseInt(localStorage.getItem('isLoggedIn'));
 
         return (
-            <div>
-                <h1 id="tabelLabel" >Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server.</p>
-                {contents}
-            </div>
+            boolLoggedIn === 1 ?
+                <div>
+                    <h1 id="tabelLabel" >Weather forecast</h1>
+                    <p>This component demonstrates fetching data from the server.</p>
+                    {contents}
+                </div>
+                : <Redirect to='/' />
         );
     }
 
