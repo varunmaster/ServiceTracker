@@ -14,9 +14,11 @@ export class Services extends Component {
     }
 
     async getServiceStatus() {
-        const res = await fetch('getservicestatus');
-        const data = await res.json();
-        console.log(data);
+        await fetch('/services/pihole', {
+            method: 'POST'
+        }).then(res => {
+            console.log(res.json())
+        });
     }
 
     render() {
@@ -25,22 +27,30 @@ export class Services extends Component {
             boolLoggedIn === 1 ?
                 <div className='center'>
                     <table>
-                        <tr>
-                            <th>Plex</th>
-                            <td>Check mark here</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>Check mark here</td>
-                        </tr>
-                        <tr>
-                            <th>Grafana</th>
-                            <td>Check mark here</td>
-                        </tr>
-                        <tr>
-                            <th>PiHole</th>
-                            <td>Check mark here</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th>Plex</th>
+                                <td>Check mark here</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Email</th>
+                                <td>Check mark here</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Grafana</th>
+                                <td>Check mark here</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>PiHole</th>
+                                <td>Check mark here</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 : <Redirect to='/' />

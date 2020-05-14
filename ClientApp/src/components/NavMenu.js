@@ -60,7 +60,7 @@ export class NavMenu extends Component {
                                 &nbsp;
                                 &nbsp;
                                 <NavItem>
-                                    <Button color="danger" size="sm" onClick={this.handleSignOut}><NavLink tag={Link} className="text-dark">Sign Out</NavLink></Button>
+                                    <Button color="danger" size="sm" onClick={this.handleSignOut}><NavLink tag={Link} to='/' className="text-dark">Sign Out</NavLink></Button>
                                 </NavItem>
                             </ul>
                         </Collapse>
