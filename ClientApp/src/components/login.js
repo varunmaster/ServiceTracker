@@ -33,7 +33,7 @@ export class login extends Component {
         //    }
         //});
         //console.log("pw:\n", pw);
-        if (this.state.username === 'varunmaster' && this.state.password === "Drqjrk2hnhbg9ngt") {
+        if (this.state.username === 'varunmaster' && this.state.password === "") {
             localStorage.setItem('isLoggedIn', 1);
             this.setState({
                 success: true

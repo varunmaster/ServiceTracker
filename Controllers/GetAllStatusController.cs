@@ -32,7 +32,7 @@ namespace ServiceTracker.Controllers
         {
             if (loggedIn == 1)
             {
-                Process[] tele = Process.GetProcessesByName("spotify");
+                Process[] tele = Process.GetProcessesByName("telegraf");
                 //Process.Start("C:\Program Files\telegraf\telegraf.exe");
                 //foreach (var process in tele)
                 //{

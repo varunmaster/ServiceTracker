@@ -14,9 +14,13 @@ export class Services extends Component {
             plexStatus: null,
             mailStatus: null
         };
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.KillTelegraf = this.KillTelegraf.bind(this);
-        this.startTelegraf = this.startTelegraf.bind(this);
+        this.componentDidMount  = this.componentDidMount.bind(this);
+        this.KillTelegraf       = this.KillTelegraf.bind(this);
+        this.startTelegraf      = this.startTelegraf.bind(this);
+        this.killPlex           = this.killPlex.bind(this);
+        this.startPlex          = this.startPlex.bind(this);
+        this.killMail           = this.killMail.bind(this);
+        this.startMail          = this.startMail.bind(this);
     }
 
     componentDidMount() {
@@ -83,6 +87,46 @@ export class Services extends Component {
     startTelegraf() {
         Axios({
             url: "/ignition/start/startTelegraf/" + this.state.loggedIn,
+            method: "POST"
+        }).then((res) => {
+            console.log(res.data);
+            window.location.reload();
+        });
+    }
+
+    killPlex() {
+        Axios({
+            url: "/ignition/kill/killPlex/" + this.state.loggedIn,
+            method: "POST"
+        }).then((res) => {
+            console.log(res.data);
+            window.location.reload();
+        });
+    }
+
+    startPlex() {
+        Axios({
+            url: "/ignition/start/startPlex/" + this.state.loggedIn,
+            method: "POST"
+        }).then((res) => {
+            console.log(res.data);
+            window.location.reload();
+        });
+    }
+
+    killMail() {
+        Axios({
+            url: "/ignition/kill/killMail/" + this.state.loggedIn,
+            method: "POST"
+        }).then((res) => {
+            console.log(res.data);
+            window.location.reload();
+        });
+    }
+
+    startMail() {
+        Axios({
+            url: "/ignition/start/startMail/" + this.state.loggedIn,
             method: "POST"
         }).then((res) => {
             console.log(res.data);
