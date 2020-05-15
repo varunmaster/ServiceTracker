@@ -96,7 +96,7 @@ namespace ServiceTracker.Controllers
                 switch (sc.Status)
                 {
                     case ServiceControllerStatus.Running:
-                        _mailStatus = "Running";
+                        _mailStatus = "running";
                         return Json(new { status = _mailStatus });
                     case ServiceControllerStatus.Stopped:
                         _mailStatus = "Stopped";

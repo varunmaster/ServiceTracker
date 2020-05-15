@@ -14,18 +14,18 @@ export class Services extends Component {
             plexStatus: null,
             mailStatus: null
         };
-        this.componentDidMount  = this.componentDidMount.bind(this);
-        this.KillTelegraf       = this.KillTelegraf.bind(this);
-        this.startTelegraf      = this.startTelegraf.bind(this);
-        this.killPlex           = this.killPlex.bind(this);
-        this.startPlex          = this.startPlex.bind(this);
-        this.killMail           = this.killMail.bind(this);
-        this.startMail          = this.startMail.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.KillTelegraf = this.KillTelegraf.bind(this);
+        this.startTelegraf = this.startTelegraf.bind(this);
+        this.killPlex = this.killPlex.bind(this);
+        this.startPlex = this.startPlex.bind(this);
+        this.killMail = this.killMail.bind(this);
+        this.startMail = this.startMail.bind(this);
     }
 
     componentDidMount() {
         this.getPiHoleStatus();
-        //this.getMailStatus();
+        this.getMailStatus();
         this.getPlexStatus();
         this.getTeleStatus();
     }
@@ -135,7 +135,7 @@ export class Services extends Component {
     }
 
     render() {
-        //console.log("state:\n", this.state);
+        console.log("state:\n", this.state);
         return (
             this.state.loggedIn === 1 ?
                 <div className='center'>
@@ -144,14 +144,14 @@ export class Services extends Component {
                             <tr>
                                 <th>Plex</th>
                                 {this.state.plexStatus === "running" ? <td>Running</td> : <td>{this.state.plexStatus}</td>}
-                                <td><Button color="success" disabled={this.state.plexStatus === 'running' ? true : false}>Start</Button> &nbsp; &nbsp; &nbsp;<Button color="danger" disabled={this.state.plexStatus !== 'running' ? true : false}>Stop</Button></td>
+                                <td><Button color="success" disabled={this.state.plexStatus === 'running' ? true : false} onClick={this.startPlex}>Start</Button> &nbsp; &nbsp; &nbsp;<Button color="danger" disabled={this.state.plexStatus !== 'running' ? true : false} onClick={this.killPlex}>Stop</Button></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <th>Email</th>
                                 {this.state.mailStatus === "running" ? <td>Running</td> : <td>{this.state.mailStatus}</td>}
-                                <td><Button color="success" disabled={this.state.mailStatus === 'running' ? true : false}>Start</Button> &nbsp; &nbsp; &nbsp;<Button color="danger" disabled={this.state.mailStatus !== 'running' ? true : false}>Stop</Button></td>
+                                <td><Button color="success" disabled={this.state.mailStatus === 'running' ? true : false} onClick={this.startMail}>Start</Button> &nbsp; &nbsp; &nbsp;<Button color="danger" disabled={this.state.mailStatus !== 'running' ? true : false} onClick={this.killMail}>Stop</Button></td>
                             </tr>
                         </tbody>
                         <tbody>
