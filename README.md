@@ -22,5 +22,8 @@ This app is designed specifically for my home network. I do not (and did not) wa
 
 The API endpoints are located in the Controllers folder. 
 
+##Issues (faced by me)
+Running the App gives an Internal server error 500 (related to some module not being loaded or found). To resolve this, go to the web.config file in the wwwroot folder and "remove V2 from modules="AspNetCoreModuleV2" " and then refresh the site. 
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
