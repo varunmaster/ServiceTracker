@@ -1,6 +1,6 @@
 # ServiceTracker
 
-ServiceTracker is a web application that monitors the status of Plex, SMTP service, Telegraf service (for Grafana), and PiHole service. This web application allows you to see the current status and Start/Stop the service (some of which are installed on a remote machine).
+ServiceTracker is a web application (ASP.Net Core) that monitors the status of Plex, SMTP service, Telegraf service (for Grafana), and PiHole service. This web application allows you to see the current status and Start/Stop the service (some of which are installed on a remote machine).
 
 ## Installation to IIS
 
@@ -16,6 +16,11 @@ dotnet publish -c Release
 5. Now you can browse the site from the "Sites section" :-)
 
 If there are any changes or questions/comments, please email me and I will be happy to answer.
+
+##Usage
+This app is designed specifically for my home network. I do not (and did not) want to install a SQL database or datastore as I will have sole access to this application. Therefore, I added a login feature that checks for the username/password combination that is stored in the local file. This is NOT a secure way to handle authentication but I did it this way for my home network setup. 
+
+The API endpoints are located in the Controllers folder. 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
