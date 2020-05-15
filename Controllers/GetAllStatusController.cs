@@ -23,11 +23,11 @@ namespace ServiceTracker.Controllers
 
         //[ApiController]
         [Route("/services/telegraf")]
-        [HttpPost]
+        [HttpGet]
         //if you set a param inside Telegraf then we can use it as params
         //ex. if url is /services/telegraf?name=plex then we can say 'public IActionResult Telegraf(string name)'
         //the 'name' in the URL and 'name' as param have to be the same 
-        public String Telegraf()
+        public IActionResult Telegraf()
         {
             Process[] tele = Process.GetProcessesByName("telegraf");
             Console.WriteLine(tele);
@@ -39,18 +39,18 @@ namespace ServiceTracker.Controllers
             if (tele.Length > 0)
             {
                 _teleStatus = "running";
-                return _teleStatus;
+                return Json(new { status = _teleStatus });
             }
             else
             {
                 _teleStatus = "stopped/other";
-                return _teleStatus;
+                return Json(new { status = _teleStatus });
             }
         }
 
         [Route("/services/plex")]
-        [HttpPost]
-        public String Plex()
+        [HttpGet]
+        public IActionResult Plex()
         {
             Process[] plex = Process.GetProcessesByName("Plex Media Server");
             Console.WriteLine(plex);
@@ -63,58 +63,58 @@ namespace ServiceTracker.Controllers
             if (plex.Length > 0)
             {
                 _plexStatus = "running";
-                return _plexStatus;
+                return Json(new { status = _plexStatus });
             }
             else
             {
                 _plexStatus = "stopped/other";
-                return _plexStatus;
+                return Json(new { status = _plexStatus });
             }
         }
 
         [Route("/services/mail")]
-        [HttpPost]
-        public String Mail()
+        [HttpGet]
+        public IActionResult Mail()
         {
             ServiceController sc = new ServiceController("SMTPSVC", "ESXi-WinMail");
             switch (sc.Status)
             {
                 case ServiceControllerStatus.Running:
                     _mailStatus = "Running";
-                    return _mailStatus;
+                    return Json(new { status = _mailStatus });
                 case ServiceControllerStatus.Stopped:
                     _mailStatus =  "Stopped";
-                    return _mailStatus;
+                    return Json(new { status = _mailStatus });
                 case ServiceControllerStatus.Paused:
                     _mailStatus = "Paused";
-                    return _mailStatus;
+                    return Json(new { status = _mailStatus });
                 case ServiceControllerStatus.StopPending:
                     _mailStatus = "Stop Pending";
-                    return _mailStatus;
+                    return Json(new { status = _mailStatus });
                 case ServiceControllerStatus.StartPending:
                     _mailStatus = "Start Pending";
-                    return _mailStatus;
+                    return Json(new { status = _mailStatus });
                 default:
                     _mailStatus = "idk what's going on";
-                    return _mailStatus;
+                    return Json(new { status = _mailStatus });
             }
         }
 
         [Route("/services/pihole")]
-        [HttpPost]
-        public String piHole()
+        [HttpGet]
+        public IActionResult piHole()
         {
             Ping ping = new Ping();
             PingReply pr = ping.Send("192.168.1.166");
             if (pr.Status.ToString() == "Success")
             {
                 _piHoleStatus = "running";
-                return _piHoleStatus;
+                return Json(new { status = _piHoleStatus });
             }
             else
             {
                 _piHoleStatus = pr.Status.ToString();
-                return _piHoleStatus;
+                return Json(new { status = _piHoleStatus });
             }
         }
     }
