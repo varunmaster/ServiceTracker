@@ -35,7 +35,18 @@ namespace ServiceTracker.Controllers
             if (loggedIn == 1)
             {
                 //Process.Start("C:\\Users\\vm305\\AppData\\Roaming\\Spotify\\Spotify.exe");
-                Process.Start("C:\\Program Files\\telegraf\\telegraf.exe");
+                //Process.Start("C:\\Program Files\\telegraf\\telegraf.exe");
+                var proc = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = @"C:\Program Files\telegraf\telegraf.exe",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = false
+                    }
+                };
+                proc.Start();
                 return Json(new { status = "Started" });
             }
             else
