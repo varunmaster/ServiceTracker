@@ -41,11 +41,19 @@ namespace ServiceTracker.Controllers
                 if (tele.Length > 0)
                 {
                     _teleStatus = "running";
+                    foreach(var proc in tele)
+                    {
+                        proc.Close();
+                    }
                     return Json(new { status = _teleStatus });
                 }
                 else
                 {
                     _teleStatus = "stopped/other";
+                    foreach (var proc in tele)
+                    {
+                        proc.Close();
+                    }
                     return Json(new { status = _teleStatus });
                 }
             }
@@ -62,7 +70,7 @@ namespace ServiceTracker.Controllers
             if (loggedIn == 1)
             {
                 Process[] plex = Process.GetProcessesByName("Plex Media Server");
-                Console.WriteLine(plex);
+                //Console.WriteLine(plex);
                 //Process.Start("C:\Program Files (x86)\Plex\Plex Media Server\Plex Media Server.exe");
                 //foreach (var process in plex)
                 //{
@@ -72,11 +80,19 @@ namespace ServiceTracker.Controllers
                 if (plex.Length > 0)
                 {
                     _plexStatus = "running";
+                    foreach (var proc in plex)
+                    {
+                        proc.Close();
+                    }
                     return Json(new { status = _plexStatus });
                 }
                 else
                 {
                     _plexStatus = "stopped/other";
+                    foreach (var proc in plex)
+                    {
+                        proc.Close();
+                    }
                     return Json(new { status = _plexStatus });
                 }
             }
@@ -97,21 +113,27 @@ namespace ServiceTracker.Controllers
                 {
                     case ServiceControllerStatus.Running:
                         _mailStatus = "running";
+                        sc.Close();
                         return Json(new { status = _mailStatus });
                     case ServiceControllerStatus.Stopped:
                         _mailStatus = "Stopped";
+                        sc.Close();
                         return Json(new { status = _mailStatus });
                     case ServiceControllerStatus.Paused:
                         _mailStatus = "Paused";
+                        sc.Close();
                         return Json(new { status = _mailStatus });
                     case ServiceControllerStatus.StopPending:
                         _mailStatus = "Stop Pending";
+                        sc.Close();
                         return Json(new { status = _mailStatus });
                     case ServiceControllerStatus.StartPending:
                         _mailStatus = "Start Pending";
+                        sc.Close();
                         return Json(new { status = _mailStatus });
                     default:
                         _mailStatus = "idk what's going on";
+                        sc.Close();
                         return Json(new { status = _mailStatus });
                 }
             }
@@ -133,11 +155,13 @@ namespace ServiceTracker.Controllers
                 if (pr.Status.ToString() == "Success")
                 {
                     _piHoleStatus = "running";
+                    ping.Dispose();
                     return Json(new { status = _piHoleStatus });
                 }
                 else
                 {
                     _piHoleStatus = pr.Status.ToString();
+                    ping.Dispose();
                     return Json(new { status = _piHoleStatus });
                 }
             }

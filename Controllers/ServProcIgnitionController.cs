@@ -17,6 +17,7 @@ namespace ServiceTracker.Controllers
                 foreach (var process in Process.GetProcessesByName("telegraf"))
                 {
                     process.Kill();
+                    process.Close();
                     return Json(new { status = "Killed" });
                 }
             }
@@ -47,6 +48,8 @@ namespace ServiceTracker.Controllers
                     }
                 };
                 proc.Start();
+                proc.Close();
+                proc.Dispose();
                 return Json(new { status = "Started" });
             }
             else
@@ -66,6 +69,7 @@ namespace ServiceTracker.Controllers
                 foreach (var process in Process.GetProcessesByName("Plex Media Server"))
                 {
                     process.Kill();
+                    process.Close();
                     return Json(new { status = "Killed" });
                 }
             } 
@@ -82,7 +86,7 @@ namespace ServiceTracker.Controllers
         {
             if (loggedIn == 1)
             {
-                Process.Start("C:\\Program Files (x86)\\Plex\\Plex Media Server\\Plex Media Server.exe");
+                Process.Start("C:\\Program Files (x86)\\Plex\\Plex Media Server\\Plex Media Server.exe").Close();
                 return Json(new { status = "Started" });
             }
             else
@@ -101,6 +105,7 @@ namespace ServiceTracker.Controllers
             {
                 ServiceController sc = new ServiceController("SMTPSVC", "ESXi-WinMail");
                 sc.Stop();
+                sc.Close();
                 return Json(new { status = "Killed" });
             }
             else
@@ -117,6 +122,7 @@ namespace ServiceTracker.Controllers
             {
                 ServiceController sc = new ServiceController("SMTPSVC", "ESXi-WinMail");
                 sc.Start();
+                sc.Close();
                 return Json(new { status = "Started" });
             }
             else
